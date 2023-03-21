@@ -22,10 +22,4 @@ public class DiningReview {
     private Integer dairyScore;
     private String commentary;
 
-    private enum ReviewStatus {
-        PENDING,
-        ACCEPTED,
-        REJECTED
-    }
-
 }
