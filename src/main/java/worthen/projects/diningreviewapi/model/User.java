@@ -11,25 +11,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Restaurant {
+public class User {
+
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
 
-    private String address;
+    private String submitterDisplayName;
     private String city;
     private String state;
-    private String zipCode;
-
-    private String phoneNumber;
-    private String emailAddress;
-    private String website;
-
-    private String overallScore;
-    private String peanutScore;
-    private String dairyScore;
-    private String eggScore;
-
+    private Integer zipCode;
+    private boolean hasDairyAllergy;
+    private boolean hasPeanutAllergy;
+    private boolean hasEggAllergy;
 
 }
