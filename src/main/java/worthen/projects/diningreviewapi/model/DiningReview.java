@@ -22,4 +22,6 @@ public class DiningReview {
     private Integer dairyScore;
     private String commentary;
 
+    private ReviewStatus reviewStatus;
+
 }
