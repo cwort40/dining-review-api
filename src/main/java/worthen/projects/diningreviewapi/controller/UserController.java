@@ -25,7 +25,10 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        validateUser(user);
+        ResponseEntity<User> validationResponse = validateUser(user);
+        if (validationResponse != null) {
+            return validationResponse;
+        }
         User newUser = userRepository.save(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
@@ -46,6 +49,16 @@ public class UserController {
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{displayName}")
+    public ResponseEntity<User> deleteUser(@PathVariable String displayName) {
+        User deletedUser = userRepository.findByDisplayName(displayName);
+        if (deletedUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userRepository.delete(deletedUser);
+        return new ResponseEntity<>(deletedUser, HttpStatus.OK);
+    }
+
     private ResponseEntity<User> validateUser(User user) {
         if (user.getDisplayName() == null ||
                 user.getDisplayName().isEmpty() ||
@@ -62,4 +75,5 @@ public class UserController {
         return null;
     }
 }
+
 

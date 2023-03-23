@@ -6,4 +6,8 @@ import lombok.NoArgsConstructor;
 public class AdminReviewAction {
 
     private boolean accepted;
+
+    public boolean isAccepted() {
+        return accepted;
+    }
 }
