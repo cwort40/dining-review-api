@@ -77,10 +77,6 @@ public class DiningReviewController {
             diningReview.setReviewStatus(ReviewStatus.PENDING);
         }
 
-        // Check that restaurant exists
-        // (Assuming the restaurant ID is valid and corresponds to an existing restaurant in the database)
-        // This can be done using a separate method in the RestaurantRepository, e.g. findById(Long id)
-
         return null;
     }
 }

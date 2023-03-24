@@ -10,8 +10,6 @@ import worthen.projects.diningreviewapi.model.ReviewStatus;
 @Repository
 public interface DiningReviewRepository extends JpaRepository<DiningReview, Long> {
 
-    List<DiningReview> findDiningReviewsByReviewStatus(ReviewStatus reviewStatus);
-
     List<DiningReview> findByRestaurantIdAndReviewStatus(Long restaurantId, ReviewStatus reviewStatus);
 
 

@@ -11,6 +11,4 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     Restaurant findByNameAndZipCode(String name, String zipCode);
 
-    List<Restaurant> findByZipCodeOrderByOverallScoreDesc(String zipCode);
-
 }

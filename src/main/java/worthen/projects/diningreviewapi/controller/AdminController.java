@@ -25,7 +25,8 @@ public class AdminController {
     private RestaurantRepository restaurantRepository;
 
     @PostMapping("/reviews/{id}/approve")
-    public ResponseEntity<Object> approveDiningReview(@PathVariable Long id, @RequestBody AdminReviewAction adminReviewAction) {
+    public ResponseEntity<Object> approveDiningReview(@PathVariable Long id,
+                                                      @RequestBody AdminReviewAction adminReviewAction) {
         DiningReview diningReview = diningReviewRepository.findById(id).orElse(null);
         if (diningReview == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -50,9 +51,12 @@ public class AdminController {
                         .findByRestaurantIdAndReviewStatus(restaurantId, ReviewStatus.ACCEPTED);
                 int numReviews = approvedReviews.size();
                 if (numReviews > 0) {
-                    double peanutScore = approvedReviews.stream().mapToInt(DiningReview::getPeanutScore).average().orElse(0);
-                    double dairyScore = approvedReviews.stream().mapToInt(DiningReview::getDairyScore).average().orElse(0);
-                    double eggScore = approvedReviews.stream().mapToInt(DiningReview::getEggScore).average().orElse(0);
+                    double peanutScore = approvedReviews.stream().mapToInt(DiningReview::getPeanutScore)
+                            .average().orElse(0);
+                    double dairyScore = approvedReviews.stream().mapToInt(DiningReview::getDairyScore)
+                            .average().orElse(0);
+                    double eggScore = approvedReviews.stream().mapToInt(DiningReview::getEggScore)
+                            .average().orElse(0);
                     restaurant.setPeanutScore(formatScore(peanutScore));
                     restaurant.setDairyScore(formatScore(dairyScore));
                     restaurant.setEggScore(formatScore(eggScore));
