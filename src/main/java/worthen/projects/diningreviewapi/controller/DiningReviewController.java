@@ -34,17 +34,6 @@ public class DiningReviewController {
         return new ResponseEntity<>(newDiningReview, HttpStatus.CREATED);
     }
 
-    @PutMapping("/admin/reviews/{id}/approve")
-    public ResponseEntity<DiningReview> approveDiningReview(@PathVariable Long id) {
-        DiningReview diningReview = diningReviewRepository.findById(id).orElse(null);
-        if (diningReview == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        diningReview.setReviewStatus(ReviewStatus.ACCEPTED);
-        DiningReview updatedDiningReview = diningReviewRepository.save(diningReview);
-        return new ResponseEntity<>(updatedDiningReview, HttpStatus.OK);
-    }
-
     @DeleteMapping("/admin/reviews/{id}")
     public ResponseEntity<DiningReview> deleteDiningReview(@PathVariable Long id) {
         DiningReview deletedDiningReview = diningReviewRepository.findById(id).orElse(null);
